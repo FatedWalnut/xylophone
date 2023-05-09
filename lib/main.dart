@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:audiofileplayer/audiofileplayer.dart';
 void main() {
-  runApp(const xylophone());
+  runApp(const Xylophone());
 
 }
 
-class xylophone extends StatelessWidget {
-  const xylophone({super.key});
+class Xylophone extends StatelessWidget {
+  const Xylophone({super.key});
   void playSound(int soundNumber){
     Audio.load('assets/note$soundNumber.wav')..play()..dispose();
+
+  }
+
+
+  Expanded buildKey({ color, soundNumber}){
+    return Expanded(
+      child: Container(
+        color:color,
+        child: TextButton(onPressed: () { playSound(soundNumber); },child: const Text('')),
+      ),
+    );
 
   }
 
@@ -21,64 +32,21 @@ class xylophone extends StatelessWidget {
         body: SafeArea(child: Center(
           child: Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment:CrossAxisAlignment.stretch,
               children:[
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.red,
-                    child: TextButton(onPressed: () { playSound(1); },child: Text('')),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.orange,
-                    child: TextButton(onPressed: () {playSound(2); },child: Text('')),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.yellow,
-                    child: TextButton(onPressed: () {playSound(3);},child: Text('')),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.teal,
-                    child: TextButton(onPressed: () {playSound(4);},child: Text('')),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.blue,
-                    child: TextButton(onPressed: () {playSound(5);},child: Text('')),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.indigo[900],
-                    child: TextButton(onPressed: () {playSound(6);},child: Text('')),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    color: Colors.purple[801],
-                    child: TextButton(onPressed: () {playSound(7); },child: Text('')),
-                  ),
-                ),
-                ]
+                buildKey(color: Colors.red, soundNumber: 1),
+                buildKey(color: Colors.orange, soundNumber: 2),
+                buildKey(color: Colors.yellow, soundNumber: 3),
+                buildKey(color: Colors.teal, soundNumber: 4),
+                buildKey(color: Colors.blue, soundNumber: 5),
+                buildKey(color: Colors.indigo, soundNumber: 6),
+                buildKey(color: Colors.purple, soundNumber: 7),
+              ],
             ),
           ),
-        )
-
         ),
         ),
+      ),
     );
   }
 }
