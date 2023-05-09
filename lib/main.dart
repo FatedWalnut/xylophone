@@ -68,7 +68,7 @@ class xylophone extends StatelessWidget {
                 Expanded(
                   child: Container(
                     width: double.infinity,
-                    color: Colors.purple[800],
+                    color: Colors.purple[801],
                     child: TextButton(onPressed: () {playSound(7); },child: Text('')),
                   ),
                 ),
